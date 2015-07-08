@@ -1,0 +1,6 @@
+name: gh-pages
+version: 0.1.0
+description: Deploy to Github Pages
+keywords:
+  - github-pages
+  - gh-pages
