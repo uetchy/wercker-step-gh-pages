@@ -14,11 +14,6 @@ fi
 
 info "Using '$repo'"
 
-if [ -n $WERCKER_GH_PAGES_DOMAIN ]; then
-  info "Generating CNAME for '$WERCKER_GH_PAGES_DOMAIN'"
-  echo $WERCKER_GH_PAGES_DOMAIN > CNAME
-fi
-
 branch="gh-pages"
 if [[ "$repo" =~ $WERCKER_GIT_OWNER\/$WERCKER_GIT_OWNER\.github\.(io|com)$ ]]; then
   branch="master"
@@ -28,6 +23,11 @@ info "Using branch '$branch'"
 if [ -d "$WERCKER_GH_PAGES_PATH" ]; then
   info "Using '$WERCKER_GH_PAGES_PATH' as root dir instead of git root"
   cd $WERCKER_GH_PAGES_PATH
+fi
+
+if [ -n $WERCKER_GH_PAGES_DOMAIN ]; then
+  info "Generating CNAME for '$WERCKER_GH_PAGES_DOMAIN'"
+  echo $WERCKER_GH_PAGES_DOMAIN > CNAME
 fi
 
 remote="https://$WERCKER_GH_PAGES_TOKEN@github.com/$repo.git"
