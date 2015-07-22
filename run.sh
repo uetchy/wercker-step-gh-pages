@@ -23,12 +23,11 @@ branch="gh-pages"
 if [[ "$repo" =~ $WERCKER_GIT_OWNER\/$WERCKER_GIT_OWNER\.github\.(io|com)$ ]]; then
   branch="master"
 fi
+info "Using branch '$branch'"
 
-info "Using branch: '$branch'"
-
-if [ -d "$WERCKER_GH_PAGES_BASEDIR" ]; then
-  info "Using '$WERCKER_GH_PAGES_BASEDIR' as basedir instead of root directory"
-  cd $WERCKER_GH_PAGES_BASEDIR
+if [ -d "$WERCKER_GH_PAGES_PATH" ]; then
+  info "Using '$WERCKER_GH_PAGES_PATH' as root dir instead of git root"
+  cd $WERCKER_GH_PAGES_PATH
 fi
 
 remote="https://$WERCKER_GH_PAGES_TOKEN@github.com/$repo.git"
@@ -37,11 +36,11 @@ rm -rf .git
 git init
 git config user.email "pleasemailus@wercker.com"
 git config user.name "werckerbot"
-git remote add origin git@github.com:uetchy/homebrew-test.git
+git remote add origin "$remote"
 git fetch origin master
 git branch --track master origin/master
 git add -A
-git commit -m "Deploy by $WERCKER_STARTED_BY"
+git commit -m "Deploy from $WERCKER_STARTED_BY"
 result="$(git push $remote master:$branch)"
 
 if [[ $? -ne 0 ]]; then
