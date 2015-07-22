@@ -1,5 +1,7 @@
 # wercker-step-gh-pages
 
+Deploy to Github Pages with Wercker.
+
 ## Usage
 
 ```yaml
@@ -14,6 +16,15 @@ deploy:
     - uetchy/gh-pages:
         token: $GITHUB_TOKEN
         repo: randompaper/randompaper.github.io
-        basedir: public
+        path: public
         domain: randompaper.co
 ```
+
+## Options
+
+|name|description|optional|
+|----|-----------|--------|
+|token|Github token|false|
+|repo|Destination repository|true/false|
+|domain|Custom domain|true|
+|path|root dir|true|
