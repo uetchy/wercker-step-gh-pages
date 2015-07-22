@@ -37,7 +37,7 @@ git init
 git config user.email "pleasemailus@wercker.com"
 git config user.name "werckerbot"
 git remote add origin "$remote"
-git fetch origin master
+git fetch origin
 git branch --track master origin/master
 git add -A
 git commit -m "Deploy from $WERCKER_STARTED_BY"
