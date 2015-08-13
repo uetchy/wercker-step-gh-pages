@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ ! -n "$WERCKER_GH_PAGES_TOKEN" ]; then
-  fail "Missing 'token' for pushing Github"
+  fail "Missing 'token' for pushing to Github"
 fi
 
 if [ -n "$WERCKER_GH_PAGES_REPO" ]; then
