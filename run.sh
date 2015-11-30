@@ -32,6 +32,10 @@ fi
 
 remote="https://$WERCKER_GH_PAGES_TOKEN@github.com/$repo.git"
 
+if ! type "git" > /dev/null; then
+  apt-get install -y git-core
+fi
+
 rm -rf .git
 git init
 git config user.email "pleasemailus@wercker.com"

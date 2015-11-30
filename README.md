@@ -8,11 +8,14 @@ Put __uetchy/gh-pages__ step into your wercker.yml.
 
 Please make sure your wercker-box contains 'git' command.
 
+### Example(Docker-stack)
+
 ```yaml
-box: wercker/default
+box: debian
 build:
   steps:
     - arjen/hugo-build:
+        version: "0.15"
         theme: hugo-paper
         flags: --buildDrafts=false
 deploy:
